@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -10,6 +11,16 @@ public class Bullet : MonoBehaviour
     }
 
     private void OnCollisionEnter()
+    {
+        SelfDestroy();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        SelfDestroy();
+    }
+
+    private void SelfDestroy()
     {
         Instantiate(_hitParticle, transform.position, Quaternion.identity);
         Destroy(gameObject);
